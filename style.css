@@ -1,0 +1,133 @@
+body {
+    background: black;
+    font-family: 'Open Sans', sans-serif;
+    color: #ccc;
+}
+#container {
+    margin: 0 auto;
+    width: 640px;
+    background: #111;
+    padding: 20px;
+    border: 1px #222 solid;
+}
+
+#header h1 { margin: 0; }
+
+#header a, #nav a { color: rgb(28, 161, 202); text-decoration: none; }
+#header a:hover, #nav a:hover { color: rgb(157, 204, 255); text-decoration: underline; }
+
+input[type='range'] {
+    -webkit-appearance: none;
+    background-color: gray;
+    height: 20px;
+    border-radius: 15px;
+    padding: 0 3px;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    vertical-align: middle;
+    -webkit-appearance: none;
+    background-color: #444;
+    width: 16px;
+    height: 16px;
+    border-radius: 16px;
+}
+
+
+.classifyName{
+    font-size: 18px;
+    color: rgb(28, 161, 202); 
+    margin-right: 10px;
+}
+
+#app{
+    position: relative;
+    background-color: white;
+    width: 80%;
+}
+
+
+
+#app > div {
+    width: 0.1px;
+    background-color: orange;
+    display: inline-block;
+    outline-style:solid;
+    outline-color:orange;
+    outline-width: 0.1px;
+    margin-left:8px;
+}
+span{
+    display:inline-block;
+    font-size:14px;
+    color:rgba(128, 128, 128, 0.5);
+    margin:2px;
+}
+
+canvas{
+// margin-left: 70px;
+background:black;
+border: 1px solid #ccc;
+   width: 95%;
+}
+
+#visualizeDiv{
+// border: 1px solid  rgb(28, 161, 202); 
+//    display: flex;
+  //  flex-wrap: wrap;
+}
+
+.song{
+    font-size: 18px;
+    color: rgb(28, 161, 202); 
+    padding: 10px;
+}
+
+.song.hover{
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+
+
+.songsPanel{
+    text-align: right;
+}
+
+
+.songsPanel li { 
+    list-style: none;
+}
+
+
+
+#editDiv{
+display: flex;
+flex-wrap: wrap;
+text-align: center;
+}
+
+.editSubdiv{
+padding: 5px;
+border: 1px solid #ccc;
+width: 45%;
+margin-right: 10px;
+margin-top: 10px;
+}
+
+#inputDiv{
+// border: 1px solid #ccc;
+padding: 5px;
+width: 93.5%;
+margin-top: 10px;
+text-align: center;
+}
+
+.inputSubdiv{
+padding: 10px;
+border: 1px solid #ccc;
+width: 93%;
+// text-align: center;
+margin-top: 10px;
+margin-right: 20px;
+}

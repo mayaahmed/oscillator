@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Music with Web Audio Api</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+
+  </head>
+  <body>       
+
+    <div id="container">
+
+      <div id="header">
+	<h1><a href="/">Web Audio API</a></h1>
+      </div>
+
+
+      
+      <div id="content">
+	<div class="post">
+	  <h2>Oscillator</h2>
+
+	  
+
+	  <div id="visualizeDiv">
+	    <canvas ></canvas>
+	    
+	  </div>
+
+	  <div id="editDiv">
+
+	    <div class="editSubdiv">
+
+	      <p>	<span class="classifyName">  Display: </span>
+		<input type="radio" name="canvasDraw" checked="checked" onclick="sample.changeDisplayType('lines')" > Lines
+		<input type="radio" name="canvasDraw"  onclick="sample.changeDisplayType('circles')" > Circles	   
+		<input type="radio" name="canvasDraw"   onclick="sample.changeDisplayType('waves')">Waves
+		<input type="radio" name="canvasDraw"   onclick="sample.changeDisplayType('discs')" >  Discs
+	      <p><span class="classifyName">  Color: </span> <input id="Color" type="color" value="#0E82A5"  oninput="sample.changeColor()"></p>
+	      <p>
+		<span class="classifyName"> Density: </span>
+		<button id="decDensity" onclick="sample.decreaseDensity()" >-</button>
+		<button  id="incDensity"  onclick="sample.increaseDensity()" >+</button>
+	      </p>
+
+	    </div>	
+
+	    <div class="editSubdiv">
+
+	      <div>
+		<p>	<span class="classifyName"> Volume: </span> 
+		  <button id="decVolume" onclick="sample.decreaseVolume()" >-</button>
+		  <button  id="incVolume"  onclick="sample.increaseVolume()" >+</button>
+		</p>
+
+		<p>	<span class="classifyName"> Frequency: </span> <input id="frequency" type="range" min="0" max="1000"
+									      step="1" value="440"
+									      oninput="sample.changeFrequency(this.value);"> </p>
+		<p>	<span class="classifyName">Detune:  </span> <input id="detune" type="range" min="-100" max="100" step="5" value="0"
+									   oninput="sample.changeDetune(this.value);"> </p>
+	      </div>
+
+	      <div  class="classifyDiv">
+		<span class="classifyName"> Wave Type: </span>
+
+		<input type="radio" name="ir" value="0" class="effect" 
+		       onclick="sample.changeType('sine')">Sine</input>
+		<input type="radio" name="ir" value="1" class="effect" 
+		       onclick="sample.changeType('square')">Square</input> 
+		<input type="radio" name="ir" value="2" class="effect"  checked
+		       onclick="sample.changeType('sawtooth')">Sawtooth</input>
+		<input type="radio" name="ir" value="3" class="effect"
+		       onclick="sample.changeType('triangle')">Triangle</input>
+	      </div>
+
+
+
+	      <div  class="classifyDiv">
+		<span class="classifyName"> Filter Type: </span>
+		<input type="radio" name="filter"  class="effect"  checked
+		       onclick="sample.changeFilterType('lowpass')">lowpass</input>
+
+
+		<input type="radio" name="filter"  class="effect" 
+		       onclick="sample.changeFilterType('highpass')">highpass</input>
+		<input type="radio" name="filter"  class="effect" 
+		       onclick="sample.changeFilterType('bandpass')">bandpass</input>
+		<input type="radio" name="filter"  class="effect" 
+		       onclick="sample.changeFilterType('lowshelf')">lowshelf</input>
+		<input type="radio" name="filter"  class="effect" 
+		       onclick="sample.changeFilterType('highshelf')">highshelf</input>
+		<input type="radio" name="filter"  class="effect" 
+		       onclick="sample.changeFilterType('peaking')">peaking</input>
+		<input type="radio" name="filter"  class="effect" 
+		       onclick="sample.changeFilterType('notch')">notch</input>
+		<input type="radio" name="filter"  class="effect" 
+		       onclick="sample.changeFilterType('allpass')">allpass</input>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+      </div>	
+
+      <div id="inputDiv" > 
+	<div class="inputSubdiv">
+	  <p> Select Song :		
+	    <span class="songClass"> <a class="song" onclick = "sample.getSong(0)"> Twinkle Twinkle </a> </span>
+	    <span class="songClass"> <a class="song" onclick = "sample.getSong(1)"> Lara's theme  </a> </span>
+	    <span class="songClass"> <a class="song" onclick = "sample.getSong(2)" > Jana Gana Mana </a> </span>
+            
+	  </p>
+	</div>
+
+	<div class="inputSubdiv">
+
+	  <p>Enter Song Notes:</p>
+	  <p><textarea rows="4" cols="50" id="songNotesInput"></textarea></p>
+	  <p>Enter Song Durations:</p>
+	  <p><textarea rows="4" cols="50" id="songDurationsInput"> </textarea></p>
+	  <p><button onclick="sample.getNotes()">Submit</button> 
+	</div>  
+	<div class="inputSubdiv">	<button onclick="sample.playSong()">Play</button>
+	  
+	  <button onclick="sample.pause()">Pause</button>
+	  <button onclick="location.reload()">Refresh</button>
+	</div>
+</p>
+
+
+
+</div>
+</div>
+
+<script src="audio.js"></script>
+<script>
+  var sample = new OscillatorSample();
+</script>
+
+<script src="frequency.js"></script>
+<script src="songs.js"></script>
+<script src="visualize.js"></script>
+<script src="playSong.js"></script>
+<script src="initialDraw.js"></script>
+
+
+
+
+
+</body>
+
+</html>

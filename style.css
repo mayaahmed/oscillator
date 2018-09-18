@@ -65,7 +65,8 @@ canvas{
    
 background:black;
 border: 1px solid #ccc;
- width: 95%;
+ width: 95%; 
+ height: 200px;
 }
 
 

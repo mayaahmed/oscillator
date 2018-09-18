@@ -28,14 +28,11 @@ function OscillatorSample() {
     this.gain.gain.value = 0.5;
     this.WIDTH = 640;
     this.HEIGHT = 240;
-    // this.canvas.width = this.WIDTH;
-    // this.canvas.height = this.HEIGHT;
     this.display = "lines";
     this.checkLines= true;
     this.song  = new Array();
     this.durations  = new Array();
     this.gap=0;
-    this.startTime=0;
     this.filter = audioContext.createBiquadFilter();
     this.app = document.getElementById("app");
     this.analyser = audioContext.createAnalyser();
@@ -45,7 +42,8 @@ function OscillatorSample() {
     this.drawContext.strokeStyle = Color.value;
     this.drawContext.fillStyle = Color.value;
     this.waveType ="sawtooth";
-
+    this.filter.type = "lowpass";
+    
 }
 
 
@@ -60,10 +58,6 @@ OscillatorSample.prototype.pause = function() {
     this.osc.stop(0);
     
 };
-
-
-
-
 
 OscillatorSample.prototype.changeFrequency = function(val) {
     this.osc.frequency.value = val;
@@ -121,7 +115,32 @@ OscillatorSample.prototype.increaseVolume =function(){
 }
 
 
+var attackIn = document.getElementById("attackInput");
+var  attack=0.1;
+
+attackIn.onchange = function () {
+    attack=attackIn.value;
+    console.log(attack);
+}
+
+var decayIn = document.getElementById("decayInput");
+var  decay=0.1; 
+decayIn.onchange = function () {
+    decay=decayIn.value;
+    console.log(decay);
+}
+
+var sustainIn = document.getElementById("sustainInput");
+var sustain=0.1;
+sustainIn.onchange = function () {
+    sustain=sustainIn.value;
+    console.log(sustain);
+}
 
 
-
-
+var releaseIn = document.getElementById("releaseInput");
+var  release=0.25; 
+releaseIn.onchange = function () {
+    release=releaseIn.value;
+    console.log(release);
+}

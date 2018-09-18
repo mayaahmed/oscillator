@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <title>Music with Web Audio Api</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-
+    <link rel="stylesheet" type="text/css" href="dropdown.css">
 
   </head>
   <body>       
@@ -13,25 +13,58 @@
     <div id="container">
 
       <div id="header">
-	<h1><a href="/">Web Audio API</a></h1>
-      </div>
 
+<h2>Oscillator</h2>
+      </div>
+      
 
       
-      <div id="content">
-	<div class="post">
-	  <h2>Oscillator</h2>
+      
+      <canvas ></canvas>
+
+      <div id="inputDiv" > 
+
+<div id="controlsDiv">
+	<button onclick="sample.playSong()">Play</button>
+	
+	<button onclick="sample.pause()">Pause</button>
+	<button onclick="location.reload()">New</button>
+
+
+	<span id="volumeSpan"> Volume: 
+	  <button id="decVolume" onclick="sample.decreaseVolume()" >-</button>
+
+	  <button  id="incVolume"  onclick="sample.increaseVolume()" >+</button></span> 
+</div>
+
+	<div class="dropdown">
+          <button onclick="myFunction(inputSong)"   class="dropbtn"> Songs Input</button>
+	  
+	  <div id="inputSong"  class="dropdown-content">
+
+	    <div class="inputSubdiv">
+	      <p> Select Song :		
+		<span class="songClass"> <a class="song" onclick = "sample.getSong(0)"> Twinkle Twinkle </a> </span>
+		<span class="songClass"> <a class="song" onclick = "sample.getSong(1)"> Lara's theme  </a> </span>
+		<span class="songClass"> <a class="song" onclick = "sample.getSong(2)" > Jana Gana Mana </a> </span>
+		
+	      </p>
+	    </div>
+
+	    
+	</div>
+
+
 
 	  
-
-	  <div id="visualizeDiv">
-	    <canvas ></canvas>
+	  <div class="dropdown">
+            <button onclick="myFunction(displayDiv)"   class="dropbtn"> Display</button>
 	    
-	  </div>
 
-	  <div id="editDiv">
 
-	    <div class="editSubdiv">
+	    <div class="editSubDiv dropdown-content" id="displayDiv">
+
+
 
 	      <p>	<span class="classifyName">  Display: </span>
 		<input type="radio" name="canvasDraw" checked="checked" onclick="sample.changeDisplayType('lines')" > Lines
@@ -44,23 +77,22 @@
 		<button id="decDensity" onclick="sample.decreaseDensity()" >-</button>
 		<button  id="incDensity"  onclick="sample.increaseDensity()" >+</button>
 	      </p>
+	    </div>
 
-	    </div>	
+	  </div>
 
-	    <div class="editSubdiv">
 
-	      <div>
-		<p>	<span class="classifyName"> Volume: </span> 
-		  <button id="decVolume" onclick="sample.decreaseVolume()" >-</button>
-		  <button  id="incVolume"  onclick="sample.increaseVolume()" >+</button>
-		</p>
 
-		<p>	<span class="classifyName"> Frequency: </span> <input id="frequency" type="range" min="0" max="1000"
-									      step="1" value="440"
-									      oninput="sample.changeFrequency(this.value);"> </p>
-		<p>	<span class="classifyName">Detune:  </span> <input id="detune" type="range" min="-100" max="100" step="5" value="0"
-									   oninput="sample.changeDetune(this.value);"> </p>
-	      </div>
+	  <div class="dropdown">
+            <button onclick="myFunction(editWaveDiv)"   class="dropbtn">Edit</button>
+	    
+
+
+	    <div class="editSubDiv dropdown-content" id="editWaveDiv">
+
+
+	      
+	      
 
 	      <div  class="classifyDiv">
 		<span class="classifyName"> Wave Type: </span>
@@ -98,57 +130,60 @@
 		<input type="radio" name="filter"  class="effect" 
 		       onclick="sample.changeFilterType('allpass')">allpass</input>
 	      </div>
+
+	      <span class="classifyName"> Frequency:  <input id="frequency" type="range" min="0" max="1000"
+							     step="1" value="440"
+							     oninput="sample.changeFrequency(this.value)"> </span>
+	      <span class="classifyName">Detune:   <input id="detune" type="range" min="-100" max="100" step="5" value="0"
+							  oninput="sample.changeDetune(this.value)"> </span>
+	      <span class="classifyName">Attack   <input id="attackInput" type="range" min="0" max="1" step="0.1" value="0.1" > </span>
+	      
+	      <span class="classifyName">Decay  <input id="decayInput" type="range" min="0" max="1" step="0.1" value="0.1"> </span>
+	      
+	      <span class="classifyName">Sustain  <input id="sustainInput" type="range" min="0" max="1" step="0.1" value="0.2"> </span>
+	      
+	      <span class="classifyName">Release  <input id="releaseInput" type="range" min="0" max="1" step="0.1" value="0.4"></span>
+	      
+
 	    </div>
+	    
+	  </div>
+
+
+	
+	<div  >
+
+	      <p>Enter Song Notes:</p>
+	      <p><textarea rows="4" cols="50" id="songNotesInput"></textarea></p>
+	      <p>Enter Song Durations:</p>
+	      <p><textarea rows="4" cols="50" id="songDurationsInput"> </textarea></p>
+	      <p><button onclick="sample.getNotes()">Submit</button> 
+	    </div>  
+
+
 
 	  </div>
-	</div>
-      </div>	
-
-      <div id="inputDiv" > 
-	<div class="inputSubdiv">
-	  <p> Select Song :		
-	    <span class="songClass"> <a class="song" onclick = "sample.getSong(0)"> Twinkle Twinkle </a> </span>
-	    <span class="songClass"> <a class="song" onclick = "sample.getSong(1)"> Lara's theme  </a> </span>
-	    <span class="songClass"> <a class="song" onclick = "sample.getSong(2)" > Jana Gana Mana </a> </span>
-            
-	  </p>
-	</div>
-
-	<div class="inputSubdiv">
-
-	  <p>Enter Song Notes:</p>
-	  <p><textarea rows="4" cols="50" id="songNotesInput"></textarea></p>
-	  <p>Enter Song Durations:</p>
-	  <p><textarea rows="4" cols="50" id="songDurationsInput"> </textarea></p>
-	  <p><button onclick="sample.getNotes()">Submit</button> 
-	</div>  
-	<div class="inputSubdiv">	<button onclick="sample.playSong()">Play</button>
 	  
-	  <button onclick="sample.pause()">Pause</button>
-	  <button onclick="location.reload()">Refresh</button>
-	</div>
-</p>
+	
 
+	
+      </div>
 
+      <script src="audio.js"></script>
+      <script>
+	var sample = new OscillatorSample();
+      </script>
 
-</div>
-</div>
-
-<script src="audio.js"></script>
-<script>
-  var sample = new OscillatorSample();
-</script>
-
-<script src="frequency.js"></script>
-<script src="songs.js"></script>
-<script src="visualize.js"></script>
-<script src="playSong.js"></script>
-<script src="initialDraw.js"></script>
+      <script src="frequency.js"></script>
+      <script src="songs.js"></script>
+      <script src="visualize.js"></script>
+      <script src="playSong.js"></script>
+      <script src="initialDraw.js"></script>
 
 
 
 
 
-</body>
+  </body>
 
 </html>

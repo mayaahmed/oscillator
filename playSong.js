@@ -41,34 +41,36 @@ OscillatorSample.prototype.getNotes = function() {
     this.startTime = 20;
     this.gap=0.25;
     this.playSong();
-    
-
 };
 
 
 
 OscillatorSample.prototype.playSong = function(){
+  console.log(this.song);
+    //initialize    
     if(this.osc) this.osc.stop(0);
     this.drawContext.clearRect(0, 0, this.canvas.width, this.canvas.height); // Clear the this.canvas
+    // create and connect oscillators    
     this.osc = audioContext.createOscillator();
     var modulator = audioContext.createOscillator();
-
     this.osc.type= this.waveType;
-    this.filter.type = "lowpass";
+    modulator.connect(this.osc.frequency);
+    this.osc.connect(this.analyser).connect(this.gain).connect(this.filter).connect(audioContext.destination);
+
     var frequencies = new Array();
     for(var i=0; i<this.song.length; i++)
 	frequencies[i]= getFrequency(this.song[i]);
-    modulator.connect(this.osc.frequency);
-    
-
-
-    this.osc.connect(this.analyser).connect(this.gain).connect(this.filter).connect(audioContext.destination);
-    var startTime=this.startTime; 
+    var startTime = 0;
     this.osc.start(0);
     for(var i=0; i<this.song.length; i++){
+
 	this.osc.frequency.setValueAtTime(frequencies[i], startTime);
+ 	this.gain.gain.linearRampToValueAtTime(1, startTime + attack);
+	this.gain.gain.linearRampToValueAtTime(sustain, startTime + attack +decay);
+
 	startTime = startTime+this.durations[i]+ this.gap; 
-	
+	// release = startTime;
+	this.gain.gain.setTargetAtTime(0, startTime+attack + decay+release, 0.5);	
     }
 
     if(this.display=="lines")  requestAnimFrame(this.drawLines.bind(this));
@@ -80,9 +82,10 @@ OscillatorSample.prototype.playSong = function(){
 
     
     var temp = startTime*1000;
-    this.osc.stop(startTime+1);
+    this.osc.stop(startTime+release+1);
     // initialCircles();
 }
+
 
 
 

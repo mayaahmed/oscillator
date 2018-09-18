@@ -36,7 +36,7 @@ OscillatorSample.prototype.getNotes = function() {
 	    this.durations.push(temp);
 	}
     }
-
+    console.log(this.song);
     console.log(this.durations);
     this.startTime = 20;
     this.gap=0.25;
@@ -46,7 +46,7 @@ OscillatorSample.prototype.getNotes = function() {
 
 
 OscillatorSample.prototype.playSong = function(){
-  console.log(this.song);
+    
     //initialize    
     if(this.osc) this.osc.stop(0);
     this.drawContext.clearRect(0, 0, this.canvas.width, this.canvas.height); // Clear the this.canvas
@@ -60,8 +60,8 @@ OscillatorSample.prototype.playSong = function(){
     var frequencies = new Array();
     for(var i=0; i<this.song.length; i++)
 	frequencies[i]= getFrequency(this.song[i]);
-    var startTime = 0;
-    this.osc.start(0);
+    var startTime = audioContext.currentTime;
+    this.osc.start(startTime);
     for(var i=0; i<this.song.length; i++){
 
 	this.osc.frequency.setValueAtTime(frequencies[i], startTime);
@@ -72,7 +72,7 @@ OscillatorSample.prototype.playSong = function(){
 	// release = startTime;
 	this.gain.gain.setTargetAtTime(0, startTime+attack + decay+release, 0.5);	
     }
-
+    
     if(this.display=="lines")  requestAnimFrame(this.drawLines.bind(this));
 
     else if(this.display=="waves") requestAnimFrame(this.drawWaves.bind(this));
@@ -81,9 +81,15 @@ OscillatorSample.prototype.playSong = function(){
 	requestAnimFrame(this.drawCircles.bind(this)); 
 
     
-    var temp = startTime*1000;
+    
     this.osc.stop(startTime+release+1);
-    // initialCircles();
+
+    this.osc.onended = function() {
+	console.log('Your tone has now stopped playing!'); 
+
+    }
+
+    
 }
 
 

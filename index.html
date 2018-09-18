@@ -27,8 +27,8 @@
 <div id="controlsDiv">
 	<button onclick="sample.playSong()">Play</button>
 	
-	<button onclick="sample.pause()">Pause</button>
-	<button onclick="location.reload()">New</button>
+	<button onclick="sample.pause()">Stop</button>
+	<button onclick="location.reload()">Refresh</button>
 
 
 	<span id="volumeSpan"> Volume: 
@@ -38,11 +38,11 @@
 </div>
 
 	<div class="dropdown">
-          <button onclick="myFunction(inputSong)"   class="dropbtn"> Songs Input</button>
+          <button onclick="myFunction(inputSong)"   class="dropbtn"> Songs </button>
 	  
 	  <div id="inputSong"  class="dropdown-content">
-
-	    <div class="inputSubdiv">
+  <div class="editSubDiv>
+	 
 	      <p>	
 		<span class="songClass"> <a class="song" onclick = "sample.getSong(0)"> Twinkle Twinkle </a> </span>
 		<span class="songClass"> <a class="song" onclick = "sample.getSong(1)"> Lara's theme  </a> </span>
@@ -154,9 +154,13 @@
 	<div  >
 
 	      <p>Enter Song Notes:</p>
-	      <p><textarea rows="4" cols="50" id="songNotesInput"></textarea></p>
+	      <p><textarea rows="4" cols="50" id="songNotesInput">
+b3,d3,a#4,b4,f4,a4,g4,d3,c#3,c3,c3,d3,e4,f4,e4,d3,c#3,d3,c4,b4,b3,d3,a#4,b4,f4,a4,g4,d3,c#3,c3,c3,d3,e4,f4,e4,d3,c#3,d3,c4,b4
+</textarea></p>
 	      <p>Enter Song Durations:</p>
-	      <p><textarea rows="4" cols="50" id="songDurationsInput"> </textarea></p>
+	      <p><textarea rows="4" cols="50" id="songDurationsInput">
+3/4,3/4,1/4,3/4,1/4,1/4,1/4,3/4,1/4,3/4,3/4,3/4,1/4,3/4,1/4,1/4,1/4,3/4,1/4,3/4,3/4,3/4,1/4,3/4,1/4,1/4,1/4,3/4,1/4,3/4,3/4,3/4,1/4,3/4,1/4,1/4,1/4,3/4,1/4,3/4
+ </textarea></p>
 	      <p><button onclick="sample.getNotes()">Submit</button> 
 	    </div>  
 
@@ -173,12 +177,13 @@
       <script>
 	var sample = new OscillatorSample();
       </script>
-
+  
       <script src="frequency.js"></script>
       <script src="songs.js"></script>
       <script src="visualize.js"></script>
+<script src="initialDraw.js"></script>
       <script src="playSong.js"></script>
-      <script src="initialDraw.js"></script>
+    
 
 
 

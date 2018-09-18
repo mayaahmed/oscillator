@@ -37,35 +37,27 @@
 	  <button  id="incVolume"  onclick="sample.increaseVolume()" >+</button></span> 
 </div>
 
-	<div class="dropdown">
-          <button onclick="myFunction(inputSong)"   class="dropbtn"> Songs </button>
-	  
-	  <div id="inputSong"  class="dropdown-content">
-  <div class="editSubDiv>
-	 
-	      <p>	
-		<span class="songClass"> <a class="song" onclick = "sample.getSong(0)"> Twinkle Twinkle </a> </span>
-		<span class="songClass"> <a class="song" onclick = "sample.getSong(1)"> Lara's theme  </a> </span>
-		<span class="songClass"> <a class="song" onclick = "sample.getSong(2)" > Jana Gana Mana </a> </span>
-		
-	      </p>
-	    </div>
-
-	    
-	</div>
-
+<div class="dropdown">
+  <button onclick="myFunction(inputSong)"   class="dropbtn"> Songs </button>
+  
+  <div id="inputSong" class="editSubDiv dropdown-content">
+    
+    <p>	
+      <span class="songClass"> <a class="song" onclick = "sample.getSong(0)"> Twinkle Twinkle </a> </span>
+      <span class="songClass"> <a class="song" onclick = "sample.getSong(1)"> Lara's theme  </a> </span>
+      <span class="songClass"> <a class="song" onclick = "sample.getSong(2)" > Jana Gana Mana </a> </span>
+      
+    </p>
+    
+    
+  </div>
+</div>
 
 
 	  
 	  <div class="dropdown">
             <button onclick="myFunction(displayDiv)"   class="dropbtn"> Display</button>
-	    
-
-
 	    <div class="editSubDiv dropdown-content" id="displayDiv">
-
-
-
 	      <p>	<span class="classifyName">  Display: </span>
 		<input type="radio" name="canvasDraw" checked="checked" onclick="sample.changeDisplayType('lines')" > Lines
 		<input type="radio" name="canvasDraw"  onclick="sample.changeDisplayType('circles')" > Circles	   
@@ -85,14 +77,7 @@
 
 	  <div class="dropdown">
             <button onclick="myFunction(editWaveDiv)"   class="dropbtn">Edit</button>
-	    
-
-
-	    <div class="editSubDiv dropdown-content" id="editWaveDiv">
-
-
-	      
-	      
+		    <div class="editSubDiv dropdown-content" id="editWaveDiv">
 
 	      <div  class="classifyDiv">
 		<span class="classifyName"> Wave Type: </span>
